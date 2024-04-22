@@ -1,3 +1,9 @@
+// Wen Fan
+// CPSC 121L - 11
+// May 03, 2024
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
+
 #ifndef LEFTOVER_TRACKER_BACKEND_H_
 #define LEFTOVER_TRACKER_BACKEND_H_
 
@@ -52,5 +58,6 @@ class LeftoverTrackerBackend {
   // A top level class object to leftovers.
   // TODO: Add a LeftoverTracker object as a member variable here. Make sure you stick
   // to Google's style guide when naming your variable.
+  LeftoverTracker tracker_;
 };
 #endif
