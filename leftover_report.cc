@@ -1,9 +1,8 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Wen Fan
+// CPSC 121L - 11
+// May 03, 2024
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
 
 #include "leftover_report.h"
 // ========================= YOUR CODE HERE =========================
@@ -18,3 +17,26 @@
 // to tell the compiler that each function belongs to the LeftoverReport
 // class.
 // ===================================================================
+
+std::vector<std::string> LeftoverReport::GetMostCommonLeftover() const {
+    return most_common_leftover_;
+}
+std::vector<std::string> LeftoverReport::GetMostCostlyLeftoverProducingMeals() const {
+    return most_costly_leftover_producing_meals_;
+}
+
+double LeftoverReport::GetTotalCostOfLeftover() const {
+    return total_cost_of_leftover_;
+}
+
+std::vector<std::string> LeftoverReport::GetMostCommonLeftoverReasons() const {
+    return most_common_leftover_reasons_;
+}
+
+std::vector<std::string> LeftoverReport::GetMostCommonDisposalMechanisms() const {
+    return most_common_disposal_mechanisms_;
+}
+
+std::vector<std::string> LeftoverReport::GetSuggestedLeftoverReductionStrategies() const {
+    return suggested_strategies_to_reduce_leftovers_;
+}
