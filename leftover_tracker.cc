@@ -1,9 +1,8 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Wen Fan
+// CPSC 121L - 11
+// May 03, 2024
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
 
 #include "leftover_tracker.h"
 
@@ -19,3 +18,30 @@
 // to tell the compiler that each function belongs to the LeftoverTracker
 // class.
 // ===================================================================
+
+bool LeftoverTracker::AddRecord(const LeftoverRecord& record) {
+    for (LeftoverRecord exisiting_record : leftover_records_) {
+        if (exisiting_record.GetDate() == record.GetDate() &&
+            exisiting_record.GetMeal() == record.GetMeal() &&
+            exisiting_record.GetFoodName() == record.GetFoodName() &&
+            exisiting_record.GetQuantityOunces() == record.GetQuantityOunces() &&
+            exisiting_record.GetLeftoverReason() == record.GetLeftoverReason() &&
+            exisiting_record.GetDisposalMechanism() == record.GetDisposalMechanism() &&
+            exisiting_record.GetCost() == record.GetCost()) {
+                return false;
+            }
+    }
+    leftover_records_.push_back(record);
+    return true;
+}
+
+//bool LeftoverTracker::DeleteRecord(const LeftoverRecord &record) {}
+
+const std::vector<LeftoverRecord>& LeftoverTracker::GetRecords() const {
+    return leftover_records_;
+}
+
+LeftoverReport LeftoverTracker::GetLeftoverReport() const {
+    LeftoverReport report(leftover_records_);
+    return report;
+}
