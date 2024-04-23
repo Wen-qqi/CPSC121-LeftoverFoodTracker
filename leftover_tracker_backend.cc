@@ -10,6 +10,7 @@
 
 #include "leftover_record.h"
 #include "leftover_report.h"
+#include "leftover_tracker.h"
 #include "server_utils/rapidjson/document.h"      // rapidjson's DOM-style API
 #include "server_utils/rapidjson/prettywriter.h"  // for stringify JSON
 #include "server_utils/rapidjson/rapidjson.h"
@@ -400,6 +401,7 @@ crow::json::wvalue LeftoverTrackerBackend::DeleteRecord(
   crow::json::wvalue status;
     
   bool delete_result = false;
+  // tracker_.DeleteRecord(record);
   // TODO: Call the member function in the LefrtoverTracker class, on the
   // member object that you added in leftovere_tracker.h, that deletes
   // `record` and returns the status of the delete operation as a bool. Store
