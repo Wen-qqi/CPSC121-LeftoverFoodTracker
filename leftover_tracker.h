@@ -24,7 +24,7 @@ class LeftoverTracker {
       // Remember that std::string is an object!
       // ===============================================================
  public:
-  bool AddRecord(const LeftoverRecord& record);
+  bool AddRecord(const LeftoverRecord &record);
   bool DeleteRecord(const LeftoverRecord &record);
   const std::vector<LeftoverRecord>& GetRecords() const;
   LeftoverReport GetLeftoverReport() const;
@@ -32,5 +32,4 @@ class LeftoverTracker {
  private:
   std::vector<LeftoverRecord> leftover_records_;
 };
-
 #endif
