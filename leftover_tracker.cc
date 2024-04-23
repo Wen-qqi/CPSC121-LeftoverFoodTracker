@@ -36,6 +36,12 @@ bool LeftoverTracker::AddRecord(const LeftoverRecord& record) {
 }
 
 //bool LeftoverTracker::DeleteRecord(const LeftoverRecord &record) {}
+  //auto it = std::find(leftover_records_.begin(), leftover_records_.end(), record);
+//  if (leftover_records_.find(record) != leftover_records_.end()) {
+//    leftover_records_.erase(record);
+ //   return true; // Record deleted successfully
+  //}
+  //return false;}
 
 const std::vector<LeftoverRecord>& LeftoverTracker::GetRecords() const {
     return leftover_records_;
