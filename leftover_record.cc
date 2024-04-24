@@ -29,46 +29,41 @@ void LeftoverRecord::SetMeal(const std::string &meal) { meal_ = meal; }
 std::string LeftoverRecord::GetFoodName() const { return food_name_; }
 
 void LeftoverRecord::SetFoodName(const std::string &food_name) {
-    food_name_ = food_name;
+  food_name_ = food_name;
 }
 
-double LeftoverRecord::GetQuantityOunces() const {
-    return quantity_ounces_;
-}
+double LeftoverRecord::GetQuantityInOz() const { return qty_in_oz_; }
 
-void LeftoverRecord::SetQuantityOunces(double quantity_ounce) {
-    quantity_ounces_ = quantity_ounce;
+void LeftoverRecord::SetQuantityInOz(double qty_in_oz) {
+  qty_in_oz_ = qty_in_oz;
 }
 
 std::string LeftoverRecord::GetLeftoverReason() const {
-    return leftover_reason_;
+  return leftover_reason_;
 }
 void LeftoverRecord::SetLeftoverReason(const std::string &leftover_reason) {
-    leftover_reason_ = leftover_reason;
+  leftover_reason_ = leftover_reason;
 }
 
 std::string LeftoverRecord::GetDisposalMechanism() const {
-    return disposal_mechanism_;
+  return disposal_mechanism_;
 }
-void LeftoverRecord::SetDisposalMechanism(const std::string &disposal_mechanism) {
-    disposal_mechanism_ = disposal_mechanism;
+void LeftoverRecord::SetDisposalMechanism(
+    const std::string &disposal_mechanism) {
+  disposal_mechanism_ = disposal_mechanism;
 }
 
-double LeftoverRecord::GetCost() const {
-    return cost_;
-}
-void LeftoverRecord::SetCost(double cost) {
-    cost_ = cost;
-}
+double LeftoverRecord::GetCost() const { return cost_; }
+void LeftoverRecord::SetCost(double cost) { cost_ = cost; }
 
 bool LeftoverRecord::operator==(const LeftoverRecord &other) {
-    if (date_ == other.date_ && meal_ == other.meal_ &&
-        food_name_ == other.food_name_ && quantity_ounces_ == other.quantity_ounces_ &&
-        leftover_reason_ == other.leftover_reason_ &&
-        disposal_mechanism_ == other.disposal_mechanism_ &&
-        cost_ == other.cost_) {
-            return true;
-        } else {
-            return false;
-        }
+  if (date_ == other.date_ && meal_ == other.meal_ &&
+      food_name_ == other.food_name_ && qty_in_oz_ == other.qty_in_oz_ &&
+      leftover_reason_ == other.leftover_reason_ &&
+      disposal_mechanism_ == other.disposal_mechanism_ &&
+      cost_ == other.cost_) {
+    return true;
+  } else {
+    return false;
+  }
 }
