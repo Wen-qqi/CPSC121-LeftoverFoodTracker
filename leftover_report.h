@@ -14,18 +14,18 @@
 // @Wen-qqi
 
 class LeftoverReport {
-    // ======================= YOUR CODE HERE =======================
-     // Write the LeftoverReport class here. Refer to your class design for the
-     // member variables, constructors, and member functions needed.
-     //
-     // Note: mark functions that do not modify the member variables
-     // as const, by writing `const` after the parameter list.
-     // Pass objects by const reference when appropriate.
-     // Remember that std::string is an object!
-     // ===============================================================
+  // ======================= YOUR CODE HERE =======================
+  // Write the LeftoverReport class here. Refer to your class design for the
+  // member variables, constructors, and member functions needed.
+  //
+  // Note: mark functions that do not modify the member variables
+  // as const, by writing `const` after the parameter list.
+  // Pass objects by const reference when appropriate.
+  // Remember that std::string is an object!
+  // ===============================================================
  public:
   LeftoverReport(const std::vector<LeftoverRecord> &leftover_records)
-                 : leftover_records_(leftover_records) {}
+      : leftover_records_(leftover_records) {}
 
   std::vector<std::string> GetMostCommonLeftover() const;
   std::vector<std::string> GetMostCostlyLeftoverProducingMeals() const;
