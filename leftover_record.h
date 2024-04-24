@@ -11,15 +11,15 @@
 // @Wen-qqi
 
 class LeftoverRecord {
-    // ======================= YOUR CODE HERE =======================
-    // Write the LeftoverRecord class here. Refer to your class design for the
-    // member variables, constructors, and member functions needed.
-    //
-    // Note: mark functions that do not modify the member variables
-    // as const, by writing `const` after the parameter list.
-    // Pass objects by const reference when appropriate.
-    // Remember that std::string is an object!
-    // ===============================================================
+  // ======================= YOUR CODE HERE =======================
+  // Write the LeftoverRecord class here. Refer to your class design for the
+  // member variables, constructors, and member functions needed.
+  //
+  // Note: mark functions that do not modify the member variables
+  // as const, by writing `const` after the parameter list.
+  // Pass objects by const reference when appropriate.
+  // Remember that std::string is an object!
+  // ===============================================================
  public:
   // Date
   std::string GetDate() const;
@@ -34,8 +34,8 @@ class LeftoverRecord {
   void SetFoodName(const std::string &food_name);
 
   // Quantity Ounce
-  double GetQuantityOunces() const;
-  void SetQuantityOunces(double quantity_ounce);
+  double GetQuantityInOz() const;
+  void SetQuantityInOz(double qty_in_oz);
 
   // Leftover Reason
   std::string GetLeftoverReason() const;
@@ -55,7 +55,7 @@ class LeftoverRecord {
   std::string date_;
   std::string meal_;
   std::string food_name_;
-  double quantity_ounces_;
+  double qty_in_oz_;
   std::string leftover_reason_;
   std::string disposal_mechanism_;
   double cost_;
