@@ -5,6 +5,8 @@
 // @Wen-qqi
 
 #include "leftover_report.h"
+
+#include <algorithm>
 // ========================= YOUR CODE HERE =========================
 // This implementation file is where you should implement
 // the member functions declared in the header (leftover_report.h), only
@@ -21,7 +23,6 @@
 std::vector<std::string> LeftoverReport::GetMostCommonLeftover() const {
   std::map<std::string, int> common_leftover_map = {};
   for (LeftoverRecord record : leftover_records_) {
-    common_leftover_map.insert({record.GetFoodName(), 0});
     common_leftover_map[record.GetFoodName()]++;
   }
 
@@ -30,12 +31,13 @@ std::vector<std::string> LeftoverReport::GetMostCommonLeftover() const {
   for (auto& it : common_leftover_map) {
     if (it.second > most_common_leftovers) {
       most_common_leftovers = it.second;
+      common_leftover.clear();
+      common_leftover.push_back(it.first);
+    } else if (it.second == most_common_leftovers) {
+      common_leftover.push_back(it.first);
     }
   }
 
-  for (auto& it : common_leftover_map) {
-    common_leftover.push_back(it.first);
-  }
   return common_leftover;
 }
 
@@ -82,12 +84,13 @@ std::vector<std::string> LeftoverReport::GetMostCommonLeftoverReasons() const {
   for (auto& it : common_leftover_reason_map) {
     if (it.second > most_common_leftover_reasons) {
       most_common_leftover_reasons = it.second;
+      leftover_reason.clear();
+      leftover_reason.push_back(it.first);
+    } else if (it.second == most_common_leftover_reasons) {
+      leftover_reason.push_back(it.first);
     }
   }
 
-  for (auto& it : common_leftover_reason_map) {
-    leftover_reason.push_back(it.first);
-  }
   return leftover_reason;
 }
 
@@ -120,53 +123,57 @@ LeftoverReport::GetSuggestedLeftoverReductionStrategies() const {
   for (const LeftoverRecord& record : leftover_records_) {
     suggested_strategies_map[record.GetLeftoverReason()]++;
   }
-  std::string most_common_reason;
+
+  std::vector<std::string> most_common_reasons;
   int suggest_strategies = 0;
   for (const auto& it : suggested_strategies_map) {
     if (it.second > suggest_strategies) {
       suggest_strategies = it.second;
-      most_common_reason = it.first;
+      most_common_reasons.clear();
+      most_common_reasons.push_back(it.first);
+    } else if (it.second == suggest_strategies) {
+      most_common_reasons.push_back(it.first);
     }
   }
+
   std::vector<std::string> suggest_leftover_strategies;
-  // if (!most_common_reason.empty()) {
-  // if (most_common_reason == "Expired") {
-  //     suggest_leftover_strategies.push_back("Donate before expiration");
-  // } else {
-  //     if (most_common_reason == "Tastes bad") {
-  //         suggest_leftover_strategies.push_back("Buy less food");
-  //     }
-  //     if (most_common_reason == "Too much left overs") {
-  //         suggest_leftover_strategies.push_back("Buy less food");
-  //         suggest_leftover_strategies.push_back("Cook small servings");
-  //     }
-  //     suggest_leftover_strategies.push_back("Recycle left overs");
-  // }
-
-  if (most_common_reason == "Expired") {
-    suggest_leftover_strategies.push_back("Donate before expiration");
-  } else if (most_common_reason == "Tastes bad") {
-    suggest_leftover_strategies.push_back("Buy less food");
-    if (most_common_reason != "Expired") {
-      suggest_leftover_strategies.push_back("Recycle left overs");
-    }
-  } else if (most_common_reason == "Too much left overs") {
-    suggest_leftover_strategies.push_back("Buy less food");
-    suggest_leftover_strategies.push_back("Cook small servings");
-    if (most_common_reason != "Expired") {
+  if (!most_common_reasons.empty()) {
+    if (std::find(most_common_reasons.begin(), most_common_reasons.end(),
+                  "Expired") == most_common_reasons.end()) {
       suggest_leftover_strategies.push_back("Recycle left overs");
     }
   }
 
-  // if (most_common_reason == "Expired") {
-  //  suggest_leftover_strategies.push_back("Donate before expiration");
-  // } else if (most_common_reason == "Tastes bad" || most_common_reason == "Too
-  // much left overs") {
-  //  suggest_leftover_strategies.push_back("Buy less food");
-  //  suggest_leftover_strategies.push_back("Recycle left overs");
-  //  if (most_common_reason == "Too much left overs") {
-  //      suggest_leftover_strategies.push_back("Cook small servings");
-  //  }
-  // }
+  if (!most_common_reasons.empty()) {
+    for (const auto& reason : most_common_reasons) {
+      if (reason == "Expired") {
+        if (std::find(suggest_leftover_strategies.begin(),
+                      suggest_leftover_strategies.end(),
+                      "Donate before expiration") ==
+            suggest_leftover_strategies.end()) {
+          suggest_leftover_strategies.push_back("Donate before expiration");
+        }
+      } else if (reason == "Tastes bad") {
+        if (std::find(suggest_leftover_strategies.begin(),
+                      suggest_leftover_strategies.end(),
+                      "Buy less food") == suggest_leftover_strategies.end()) {
+          suggest_leftover_strategies.push_back("Buy less food");
+        }
+      } else if (reason == "Too much left overs") {
+        if (std::find(suggest_leftover_strategies.begin(),
+                      suggest_leftover_strategies.end(),
+                      "Buy less food") == suggest_leftover_strategies.end()) {
+          suggest_leftover_strategies.push_back("Buy less food");
+        }
+        if (std::find(suggest_leftover_strategies.begin(),
+                      suggest_leftover_strategies.end(),
+                      "Cook small servings") ==
+            suggest_leftover_strategies.end()) {
+          suggest_leftover_strategies.push_back("Cook small servings");
+        }
+      }
+    }
+  }
+
   return suggest_leftover_strategies;
 }
